@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <input id="min" number="min" value="43" disabled>
+        <input id="max" number="max" value="2019" disabled>
+    </div>
+
+    <div>
+        <input id="score" number="score" placeholder="enter the score">
+    </div>
+
+    <div>
+        <button onclick="appendToScore(0)">0</button>
+        <button onclick="appendToScore(1)">1</button>
+        <button onclick="appendToScore(2)">2</button>
+        <button onclick="appendToScore(3)">3</button>
+        <button onclick="appendToScore(4)">4</button>
+        <button onclick="appendToScore(5)">5</button>
+        <button onclick="appendToScore(6)">6</button>
+        <button onclick="appendToScore(7)">7</button>
+        <button onclick="appendToScore(8)">8</button>
+        <button onclick="appendToScore(9)">9</button>
+    </div>
+
+    <div>
+        <button onclick="min_max()">ENTER</button>
+    </div>
+
+    <script>
+        //we define a currentscore variable first
+        var currentscore = ""; 
+
+        // now i will keep on updating the score box by keep on clicking the numbers on button eg 12
+        function appendToScore(num) { //function defined on button
+            currentscore += num;
+            document.getElementById("score").value = currentscore; // here the value will be stored in score box input
+        }
+
+        // now clicking in enter the score will be compared 
+        function min_max() {
+            const min = 43;    // fix
+            const max = 2019; // fix
+            const score = parseInt(currentscore) //now let the comparison begin;   
+
+            if (score < min) {
+                document.getElementById("min").value = score;
+            }
+
+            if (score > max) {
+                document.getElementById("max").value = score;
+            }
+
+            currentscore = "";  
+            document.getElementById("score").value = "";
+        }
+    </script>
+</body>
+</html>
+
+
+
