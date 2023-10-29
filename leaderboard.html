@@ -1,67 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #fullcontainer {
+            height: 500px;
+            width: 500px;
+            border: 1px red;
+            border-style: dotted;
+            margin: 150px auto 0;
+            text-align: center;
+        }
+
+        #container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        #min,
+        #max {
+            height: 70px;
+            width: 70px;
+            background-color: lightpink;
+            margin-right: 20px;
+            padding-left: 30px;
+            font-size: 25px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        #max {
+            background-color: lightgreen;
+        }
+
+        #contain {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            margin-left: 50px;
+            padding-left: 20px;
+        }
+
+        #contain button {
+            height: 50px;
+            width: 50px;
+            background-color: lightblue;
+            font-size: 18px;
+        }
+
+        #score {
+            height: 40px;
+            width: 100px;
+            background-color: lightgrey;
+        }
+
+        #enter-button button {
+            height: 50px;
+            width: 100px;
+        }
+    </style>
+
 </head>
+
 <body>
-    <div id="container">
-        <input id="min" number="min" value="43" disabled>
-        <input id="max" number="max" value="2019" disabled>
-    </div>
+    <div id="fullcontainer">
+        <div id="container">
+            <input id="min" number="min" value="43" disabled>
+            <input id="max" number="max" value="2019" disabled>
+        </div>
 
-    <div>
-        <input id="score" number="score" placeholder="enter the score">
-    </div>
+        <div>
+            <input id="score" number="score" placeholder="#Enter the Score">
+        </div>
+        <br>
+        <div id="contain">
+            <button onclick="appendToScore(1)">1</button>
+            <button onclick="appendToScore(2)">2</button>
+            <button onclick="appendToScore(3)">3</button>
+            <button onclick="appendToScore(4)">4</button>
+            <button onclick="appendToScore(5)">5</button>
+            <button onclick="appendToScore(6)">6</button>
+            <button onclick="appendToScore(7)">7</button>
+            <button onclick="appendToScore(8)">8</button>
+            <button onclick="appendToScore(9)">9</button>
+            <button onclick="appendToScore(0)">0</button>
+        </div>
 
-    <div>
-        <button onclick="appendToScore(0)">0</button>
-        <button onclick="appendToScore(1)">1</button>
-        <button onclick="appendToScore(2)">2</button>
-        <button onclick="appendToScore(3)">3</button>
-        <button onclick="appendToScore(4)">4</button>
-        <button onclick="appendToScore(5)">5</button>
-        <button onclick="appendToScore(6)">6</button>
-        <button onclick="appendToScore(7)">7</button>
-        <button onclick="appendToScore(8)">8</button>
-        <button onclick="appendToScore(9)">9</button>
-    </div>
-
-    <div>
-        <button onclick="min_max()">ENTER</button>
+        <br><br>
+        <div id="enter-button">
+            <button onclick="min_max()">ENTER</button>
+        </div>
     </div>
 
     <script>
-        //we define a currentscore variable first
-        var currentscore = ""; 
+        var currentscore = "";
 
-        // now i will keep on updating the score box by keep on clicking the numbers on button eg 12
-        function appendToScore(num) { //function defined on button
+        function appendToScore(num) {
             currentscore += num;
-            document.getElementById("score").value = currentscore; // here the value will be stored in score box input
+            document.getElementById("score").value = currentscore;
         }
 
-        // now clicking in enter the score will be compared 
         function min_max() {
-            const min = 43;    // fix
-            const max = 2019; // fix
-            const score = parseInt(currentscore) //now let the comparison begin;   
+            const min = 43;
+            const max = 2019;
+            const score = parseInt(currentscore);
 
-            if (score < min) {
-                document.getElementById("min").value = score;
+            if (!isNaN(score)) {
+                if (score < min) {
+                    document.getElementById("min").value = score;
+                }
+
+                if (score > max) {
+                    document.getElementById("max").value = score;
+                }
             }
 
-            if (score > max) {
-                document.getElementById("max").value = score;
-            }
-
-            currentscore = "";  
+            currentscore = "";
             document.getElementById("score").value = "";
         }
     </script>
 </body>
-</html>
 
+</html>
 
 
